@@ -4,7 +4,6 @@ require 'json'
 require 'ruby-gls/version'
 require 'ruby-gls/configuration'
 require 'nokogiri'
-require 'byebug'
 
 class RubyGLS
   RubyGLS.configure
