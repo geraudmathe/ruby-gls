@@ -21,10 +21,10 @@ class RubyGLS
       html = parsed.dig('content', key, 'html')
 
       doc = Nokogiri::HTML(html)
-
+      
       status = doc.css('.trigger-status').text.strip
       status_desc = doc.css('.text-primary.lead strong').text.strip
-      parcel_number = doc.css('.row.justify-content-left').text.strip.split(':').last.strip
+      parcel_number = doc.css('.row.justify-content-left').text&.strip&.split(':')&.last&.strip
 
       detailed = [].tap do |arr|
         doc.css('.data_table tbody tr').each do |row|
@@ -40,12 +40,23 @@ class RubyGLS
         end
       end
       
+      if status == ""
+        status      = 'Not found' 
+        status_desc = "No tracking information found for #{tracking_number}"
+      end
+
       {
         tracking_number: tracking_number,
         status: status,
         status_description: status_desc,
         parcel_number: parcel_number,
         detailed_tracking: detailed
+      }
+    rescue => e
+      {
+        tracking_number: tracking_number,
+        status: 'Not found',
+        status_description: "#{e.message}"
       }
     end
 
