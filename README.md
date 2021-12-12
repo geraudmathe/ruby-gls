@@ -5,7 +5,7 @@ Ruby client for GLS shipment tracker
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ruby-gls', '0.0.2'
+gem 'ruby-gls', '0.0.3'
 ```
 
 ...followed with:
