@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['ademdinarevic@gmail.com']
   spec.homepage      = 'https://github.com/ademdc/ruby-gls'
   spec.license       = 'MIT'
-  spec.summary       = "Ruby client for glsr API"
-  spec.description   = "Ruby client for glsr API"
+  spec.summary       = "Ruby client for GLS API"
+  spec.description   = "Ruby client for GLS API"
   spec.require_paths = ['lib']
   
   spec.files         =  %w[
@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.3'
 
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_dependency 'nokogiri', '~> 1.12.5'
+  spec.add_dependency 'nokogiri', '~> 1.8.5'
 end

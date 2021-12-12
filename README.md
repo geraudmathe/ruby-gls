@@ -5,7 +5,7 @@ Ruby client for GLS shipment tracker
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ruby-gls', '0.0.1'
+gem 'ruby-gls', '0.0.2'
 ```
 
 ...followed with:
@@ -27,7 +27,7 @@ The base URL for tracking setup to: `https://api.gls-pakete.de/trackandtrace?lan
 
 ```
 RubyVibe.configure do |config|
-  config.base_url       = <YOUR_BASE_URL>
+  config.base_url = <YOUR_BASE_URL>
 end
 ```
 
