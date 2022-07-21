@@ -20,18 +20,85 @@ gem install ruby-gls
 
 ## Usage
 ```
-gls = RubyGLS.find(<TRACKING_NUMBER>)
+connection = RubyGLS::Connection.new(base_url: 'https://shipit-wbm-test01.gls-group.eu:8443', basic_auth: 'Mjc2YTQ1ZmtxTTpsWFpCSUY3dVJjY3lLN09ocjY0ZA==', contact_id: '276a45fkqM')
+```
+
+Or with password and username it can be initialized in the following way:
+
+```
+connection = RubyGLS::Connection.new(base_url: 'https://shipit-wbm-test01.gls-group.eu:8443', username: '276a45fkqM', password: 'lXZBIF7uRccyK7Ohr64d', contact_id: '276a45fkqM')
+```
+
+### Create parcel
+
+```
+opts = {
+  "Shipment": {
+      "ShipmentReference":["Ref-Unit-1234"],
+      "Product":"PARCEL",
+      "Consignee":{
+          "ConsigneeID":"1234567890",
+          "Address":{
+              "Name1":"Tim Test",
+              "Name2":"",
+              "Name3":"",
+              "CountryCode":"DE",
+              "ZIPCode":"65760",
+              "City":"Testingen",
+              "Street":"Testallee",
+              "eMail":"tim.test@gls.de",
+              "ContactPerson":"Laura Test",
+              "MobilePhoneNumber":"004912345678910",
+              "FixedLinePhonenumber":"004912345678910"
+          }
+      },
+      "Shipper": {
+          "ContactID": "276a45fkqM"
+      },
+      "ShipmentUnit": [
+          {
+              "Weight": 5
+          }
+      ]
+  },
+  "PrintingOptions":{
+      "ReturnLabels":{
+          "TemplateSet":"NONE",
+          "LabelFormat":"PDF"
+      }
+  }
+}
+
+connection.create_parcel(opts)
+```
+
+### Cancel parcel by ID
+
+```
+connection.cancel_parcel(<Tracking Number>)
+```
+
+### Get end of day report
+
+```
+connection.get_end_of_day_report(Date.today)
 ```
 
 The base URL for tracking setup to: `https://api.gls-pakete.de/trackandtrace?lang=en`. That can be changed in the following way:
 
 ```
-RubyVibe.configure do |config|
+RubyGLS.configure do |config|
   config.base_url = <YOUR_BASE_URL>
 end
 ```
 
 
+### Find a shipment per tracking number
+
+```
+gls = RubyGLS.find(<TRACKING_NUMBER>)
+
+```
 
 ### Response
 A sample success response looks like this:
