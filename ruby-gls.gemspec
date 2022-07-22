@@ -10,11 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Ruby client for GLS API"
   spec.description   = "Ruby client for GLS API"
   spec.require_paths = ['lib']
-  
-  spec.files         =  %w[
-    lib/ruby-gls.rb
-    lib/ruby-gls/*
-  ]
+  spec.files         = Dir.glob("{lib}/**/*", File::FNM_DOTMATCH).reject {|f| File.directory?(f) }
 
   spec.required_ruby_version = '>= 2.3'
 
