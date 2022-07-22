@@ -16,7 +16,7 @@ class RubyGLS::Connection
     payload = opts 
     payload[:Shipment][:Shipper][:ContactID] = client.contact_id
     
-    client.action(RubyGLS::URL::CREATE_PARCEL, payload: payload)
+    action(RubyGLS::URL::CREATE_PARCEL, payload: payload)
   end
   
   #
@@ -25,15 +25,15 @@ class RubyGLS::Connection
   def validate_parcels(**opts)
     payload = opts 
     payload[:Shipment][:Shipper][:ContactID] = client.contact_id
-    
-    client.action(RubyGLS::URL::VALIDATE_PARCELS, payload: opts)
+
+    action(RubyGLS::URL::VALIDATE_PARCELS, payload: opts)
   end
 
   #
   # https://shipit.gls-group.eu/webservices/3_0_6/doxygen/WS-REST-API/rest_shipment_processing.html#REST_API_REST_F_117
   #
   def get_allowed_services(**opts)
-    client.action(RubyGLS::URL::GET_ALLOWED_SERVICES, payload: opts)
+    action(RubyGLS::URL::GET_ALLOWED_SERVICES, payload: opts)
   end
 
   #
@@ -42,14 +42,14 @@ class RubyGLS::Connection
   def cancel_parcel(tracking_number)
     path = replace_string(RubyGLS::URL::CANCEL_PARCEL, ':parcel_id', tracking_number)
 
-    client.action(RubyGLS::URL::CANCEL_PARCEL)
+    action(RubyGLS::URL::CANCEL_PARCEL)
   end
 
   #    
   # https://shipit.gls-group.eu/webservices/3_0_6/doxygen/WS-REST-API/rest_shipment_processing.html#REST_API_REST_F_119
   #
   def update_parcel_weight(**opts)
-    client.action(RubyGLS::URL::UPDATE_PARCEL_WEIGHT, payload: opts)
+    action(RubyGLS::URL::UPDATE_PARCEL_WEIGHT, payload: opts)
   end
 
   #
@@ -58,6 +58,12 @@ class RubyGLS::Connection
   def get_end_of_day_report(date)
     path = replace_string(RubyGLS::URL::GET_END_OF_DAY_REPORT, ':date', date)
     
-    client.action(path)
+    action(path)
+  end
+
+  private
+
+  def action(path, payload: {})
+    client.action(path, payload: payload)
   end
 end

@@ -1,11 +1,11 @@
 # ruby-GLS
-Ruby client for GLS shipment tracker
+Ruby client for GLS shipment tracker and parcel creator
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ruby-gls', '1.0.1'
+gem 'ruby-gls', '1.0.2'
 ```
 
 ...followed with:
