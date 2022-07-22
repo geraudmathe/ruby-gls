@@ -18,6 +18,8 @@ Or install it with:
 gem install ruby-gls
 ```
 
+You can find the full GLS documentation in the [this link](https://shipit.gls-group.eu/webservices/3_0_6/doxygen/WS-REST-API/rest_shipment_processing.html#commonSoapShipmentProcessing)
+
 ## Usage
 ```
 connection = RubyGLS::Connection.new(base_url: 'https://shipit-wbm-test01.gls-group.eu:8443', basic_auth: 'Mjc2YTQ1ZmtxTTpsWFpCSUY3dVJjY3lLN09ocjY0ZA==', contact_id: '276a45fkqM')
@@ -82,6 +84,35 @@ connection.cancel_parcel(<Tracking Number>)
 
 ```
 connection.get_end_of_day_report(Date.today)
+```
+
+### Get allowed services
+
+```
+opts = {
+  "Source":{
+      "CountryCode":"DE",
+      "ZIPCode":"38106"
+  },
+  "Destination":{
+      "CountryCode":"DE",
+      "ZIPCode":"65779"
+  }
+}
+
+connection.get_allowed_services(opts)
+```
+
+### Update parcel weight
+
+```
+opts = {
+  "TrackID": "ZDF8DOSZ",
+  "Weight": "17.0"
+}
+
+connection.update_parcel_weight(opts)
+
 ```
 
 The base URL for tracking setup to: `https://api.gls-pakete.de/trackandtrace?lang=en`. That can be changed in the following way:
