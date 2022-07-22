@@ -1,6 +1,8 @@
 require 'ruby-gls/helper'
+require 'ruby-gls/tracking'
 
 class RubyGLS::Connection
+  extend RubyGLS::Tracking
   include RubyGLS::Helper
 
   attr_reader :client

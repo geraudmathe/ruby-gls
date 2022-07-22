@@ -5,7 +5,7 @@ Ruby client for GLS shipment tracker and parcel creator
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ruby-gls', '1.0.4'
+gem 'ruby-gls', '1.0.5'
 ```
 
 ...followed with:
@@ -127,7 +127,7 @@ end
 ### Find a shipment per tracking number
 
 ```
-gls = RubyGLS.find(<TRACKING_NUMBER>)
+gls = RubyGLS::Connection.find(<TRACKING_NUMBER>)
 
 ```
 
