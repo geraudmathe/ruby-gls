@@ -14,13 +14,18 @@ class RubyGLS::Connection
   #
   # https://shipit.gls-group.eu/webservices/3_0_6/doxygen/WS-REST-API/rest_shipment_processing.html#REST_API_REST_F_114
   #
-  def create_parcel(**opts)
+  def create_parcel(opts)
     payload = opts 
     payload[:Shipment][:Shipper][:ContactID] = client.contact_id
     
     action(RubyGLS::URL::CREATE_PARCEL, payload: payload)
   end
   
+  def find_parcels(opts)
+
+    action(RubyGLS::URL::FIND_PARCELS, payload: opts)
+  end
+
   #
   # https://shipit.gls-group.eu/webservices/3_0_6/doxygen/WS-REST-API/rest_shipment_processing.html#REST_API_REST_F_115
   #
@@ -59,7 +64,6 @@ class RubyGLS::Connection
   #
   def get_end_of_day_report(date)
     path = replace_string(RubyGLS::URL::GET_END_OF_DAY_REPORT, ':date', date)
-    
     action(path)
   end
 

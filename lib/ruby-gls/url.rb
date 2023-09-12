@@ -5,4 +5,5 @@ module RubyGLS::URL
   VALIDATE_PARCELS      = '/backend/rs/shipments/validate'
   GET_END_OF_DAY_REPORT = '/backend/rs/shipments/endofday?date=:date'
   UPDATE_PARCEL_WEIGHT  = '/backend/rs/shipments/updateparcelweight'
+  FIND_PARCELS          = '/backend/rs/tracking/parcels'
 end
