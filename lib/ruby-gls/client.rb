@@ -27,7 +27,7 @@ class RubyGLS::Client
         verify_ssl: ::OpenSSL::SSL::VERIFY_NONE
       )
     rescue => e
-      return struct_response.new(false, { error: e.message })
+      return struct_response.new(false, { error: e.message, headers: e.response.headers })
     end
 
     parse(response)
@@ -60,6 +60,7 @@ class RubyGLS::Client
   end
 
   def struct_response
+
     Struct.new(:success?, :hash_response)
   end
 end
