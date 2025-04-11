@@ -21,6 +21,10 @@ class RubyGLS::Connection
     action(RubyGLS::URL::CREATE_PARCEL, payload: payload)
   end
   
+  def track_parcel(opts)
+    action(RubyGLS::URL::TRACK_PARCEL, payload: opts)
+  end
+  
   def find_parcels(opts)
 
     action(RubyGLS::URL::FIND_PARCELS, payload: opts)
